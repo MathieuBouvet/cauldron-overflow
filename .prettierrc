@@ -1,0 +1,5 @@
+{
+  "phpVersion": "7.4",
+  "singleQuote": true,
+  "braceStyle": "psr-2"
+}
