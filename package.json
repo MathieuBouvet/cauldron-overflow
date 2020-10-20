@@ -4,13 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev-server": "encore dev-server",
+    "dev": "encore dev",
+    "watch": "encore dev --watch",
+    "build": "encore production --progress"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@prettier/plugin-php": "^0.15.1",
     "prettier": "2.1.2",
-    "prettier-plugin-twig-melody": "^0.4.6"
+    "prettier-plugin-twig-melody": "^0.4.6",
+    "@symfony/webpack-encore": "^0.28.2",
+    "core-js": "^3.0.0",
+    "regenerator-runtime": "^0.13.2",
+    "webpack-notifier": "^1.6.0"
   }
 }
