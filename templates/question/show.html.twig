@@ -44,7 +44,7 @@
       <button class="btn btn-sm btn-secondary">Submit an Answer</button>
     </div>
     <ul class="list-unstyled">
-      {% for answer in answers %}
+      {% for index, answer in answers %}
         <li class="mb-4">
           <div class="d-flex justify-content-center">
             <div class="mr-2 pt-2">
@@ -59,7 +59,8 @@
               </p>
             </div>
             <div class="vote-arrows flex-fill pt-2 js-vote-arrows"
-              style="min-width: 90px;">
+              style="min-width: 90px;"
+              data-answer-id="{{ index }}">
               <a class="vote-up" href="#" data-direction="up">
                 <i class="far fa-arrow-alt-circle-up"></i>
               </a>
