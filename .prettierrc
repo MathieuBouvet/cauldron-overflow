@@ -1,5 +1,6 @@
 {
   "phpVersion": "7.4",
   "singleQuote": true,
-  "braceStyle": "psr-2"
+  "braceStyle": "psr-2",
+  "tabWidth": 4
 }
