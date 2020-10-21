@@ -77,5 +77,5 @@
 {% endblock %}
 {% block javascripts %}
   {{ parent() }}
-  <script src="{{ asset('js/questionShow.js') }}"></script>
+  {{ encore_entry_script_tags('vote') }}
 {% endblock %}
