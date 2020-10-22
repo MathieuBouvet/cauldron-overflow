@@ -2,10 +2,9 @@
 
 namespace App\Controller;
 
-use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\Cache\CacheInterface;
+use App\Service\MarkdownCacher;
 
 class QuestionController extends AbstractController
 {
@@ -20,21 +19,12 @@ class QuestionController extends AbstractController
     /**
      * @Route("/question/{slug}", name="app_question_show")
      */
-    public function show(
-        $slug,
-        MarkdownParserInterface $parser,
-        CacheInterface $cache
-    ) {
+    public function show($slug, MarkdownCacher $markdownCacher)
+    {
         $questionText =
             "I've been turned into a cat, any *thoughts* on how to turn back?" .
             " While I'm **adorable**, I don't really care for cat food.";
-        $cache->get('markdown_' . md5($questionText), function () use (
-            $parser,
-            $questionText
-        ) {
-            return $parser->transformMarkdown($questionText);
-        });
-        $parsedQuestionText = $parser->transformMarkdown($questionText);
+        $parsedQuestionText = $markdownCacher->parse($questionText);
         $answers = [
             'Make sure your cat is sitting `purrrfectly` still 🤣',
             'Honestly, I like furry shoes better than MY cat',
