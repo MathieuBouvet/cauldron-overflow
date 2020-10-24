@@ -106,4 +106,10 @@ class Question
 
         return $this;
     }
+
+    public function getVotesString(): string
+    {
+        $sign = $this->getVotes() >= 0 ? '+' : '-';
+        return sprintf('%s%d', $sign, abs($this->getVotes()));
+    }
 }
