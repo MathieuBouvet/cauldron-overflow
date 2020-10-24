@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}
-  Question: {{ question }}
+  Question: {{ question.name }}
 {% endblock %}
 {% block body %}
   <div class="container">
@@ -19,15 +19,22 @@
               </div>
               <div class="col">
                 <h1 class="q-title-show">
-                  {{ question }}
+                  {{ question.name }}
                 </h1>
                 <div class="q-display p-3">
                   <i class="fa fa-quote-left mr-3"></i>
                   <p class="d-inline">
-                    {{ questionText|cached_parse }}
+                    {{ question.question|cached_parse }}
                   </p>
                   <p class="pt-4">
                     <strong>--Tisha</strong>
+                    <small>
+                      {% if question.askedAt %}
+                        , asked {{ question.askedAt|ago }}
+                      {% else %}
+                        unpublished
+                      {% endif %}
+                    </small>
                   </p>
                 </div>
               </div>
