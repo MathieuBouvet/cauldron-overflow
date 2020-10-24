@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Question;
+use App\Repository\QuestionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
@@ -13,10 +14,9 @@ class QuestionController extends AbstractController
     /**
      * @Route("/", name="app_homepage")
      */
-    public function homepage(EntityManagerInterface $entityManager)
+    public function homepage(QuestionRepository $repo)
     {
-        $repository = $entityManager->getRepository(Question::class);
-        $questions = $repository->findBy([], ['askedAt' => 'DESC']);
+        $questions = $repo->findAllAskedOrderedByNewest();
         return $this->render('question/homepage.html.twig', [
             'questions' => $questions,
         ]);
