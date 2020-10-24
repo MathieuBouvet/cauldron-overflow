@@ -62,16 +62,8 @@ class QuestionController extends AbstractController
     /**
      * @Route("/question/{slug}", name="app_question_show")
      */
-    public function show($slug, EntityManagerInterface $entityManager)
+    public function show(Question $question)
     {
-        $repository = $entityManager->getRepository(Question::class);
-        /** @var Question|null $question */
-        $question = $repository->findOneBy(['slug' => $slug]);
-        if (!$question) {
-            throw $this->createNotFoundException(
-                sprintf('No question found with slug %s', $slug),
-            );
-        }
         $answers = [
             'Make sure your cat is sitting `purrrfectly` still 🤣',
             'Honestly, I like furry shoes better than MY cat',
