@@ -24,7 +24,7 @@
                 <div class="q-display p-3">
                   <i class="fa fa-quote-left mr-3"></i>
                   <p class="d-inline">
-                    {{ questionText|raw }}
+                    {{ questionText|cached_parse }}
                   </p>
                   <p class="pt-4">
                     <strong>--Tisha</strong>
@@ -52,7 +52,7 @@
                 height="50" />
             </div>
             <div class="mr-3 pt-2">
-              {{ answer|markdown }}
+              {{ answer|cached_parse }}
               <p>
                 -- Mallory
               </p>

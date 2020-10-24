@@ -26,7 +26,6 @@ class MarkdownCacher
     }
     public function parse(string $source): string
     {
-        dump($this->logger);
         if (stripos($source, 'cat') !== false) {
             $this->logger->info('Meow!');
         }
