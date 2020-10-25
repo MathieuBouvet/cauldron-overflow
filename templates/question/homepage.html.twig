@@ -27,15 +27,29 @@
                   <img src="{{ asset('images/tisha.png') }}"
                     width="100"
                     height="100" />
-                  <div class="d-block mt-3 vote-arrows">
-                    <a class="vote-up" href="#">
-                      <i class="far fa-arrow-alt-circle-up"></i>
-                    </a>
-                    <a class="vote-down" href="#">
-                      <i class="far fa-arrow-alt-circle-down"></i>
-                    </a>
-                    <span>{{ question.votesString() }}</span>
-                  </div>
+                  <form action="{{
+                    path(
+                      'app_question_vote',
+                      {
+                        slug: question.slug
+                      }
+                    )
+                    }}"
+                    method="POST">
+                    <div class="d-block mt-3 vote-arrows">
+                      <button class="vote-up btn btn-lg"
+                        name="direction"
+                        value="up">
+                        <i class="far fa-arrow-alt-circle-up"></i>
+                      </button>
+                      <button class="vote-down btn btn-lg"
+                        name="direction"
+                        value="down">
+                        <i class="far fa-arrow-alt-circle-down"></i>
+                      </button>
+                      <span>{{ question.votesString() }}</span>
+                    </div>
+                  </form>
                 </div>
                 <div class="col">
                   <a class="q-title"

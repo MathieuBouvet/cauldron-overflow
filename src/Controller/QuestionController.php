@@ -7,6 +7,7 @@ use App\Repository\QuestionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class QuestionController extends AbstractController
@@ -73,5 +74,23 @@ class QuestionController extends AbstractController
             'question' => $question,
             'answers' => $answers,
         ]);
+    }
+
+    /**
+     * @Route("/question/{slug}/vote", name="app_question_vote", methods="post", )
+     */
+    public function vote(
+        Question $question,
+        Request $request,
+        EntityManagerInterface $entityManager
+    ) {
+        $direction = $request->request->get('direction');
+        if ($direction === 'up') {
+            $question->upVote();
+        } elseif ($direction === 'down') {
+            $question->downVote();
+        }
+        $entityManager->flush();
+        return $this->redirectToRoute('app_homepage');
     }
 }

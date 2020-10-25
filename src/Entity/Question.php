@@ -112,4 +112,16 @@ class Question
         $sign = $this->getVotes() >= 0 ? '+' : '-';
         return sprintf('%s%d', $sign, abs($this->getVotes()));
     }
+
+    public function upVote(): self
+    {
+        $this->votes++;
+        return $this;
+    }
+
+    public function downVote(): self
+    {
+        $this->votes--;
+        return $this;
+    }
 }
